@@ -3,13 +3,13 @@ const path = require('path');
 const ExtactTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    devtool: 'eval',
+    devtool: 'eval-source-map',
     entry: {
         app: [
             'webpack-dev-server/client?http://localhost:8080',
             'webpack/hot/only-dev-server',
-            './src/index.js',
-            './src/style.pcss'
+            './src/js/main.js',
+            './src/styles/style.pcss'
         ]
     },
     output: {
@@ -23,7 +23,7 @@ module.exports = {
                 test: /\.pcss$/,
                 exclude: /node_modules/,
                 use: ExtactTextPlugin.extract({
-                    fallback: "style-loader",
+                    fallback: 'style-loader',
                     use: [
                         {
                             loader: 'css-loader', 
