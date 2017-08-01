@@ -10,8 +10,16 @@ const loggerMiddleware = createLogger({
 });
 
 export default function configureStore(history) {
-    return createStore(
+    const store = createStore(
         reducers, 
         applyMiddleware(routerMiddleware(history), thunkMiddleware, loggerMiddleware)
     );
+    if (module.hot) {
+        module.hot.accept('../reducers', () => {
+            const nextRootReducer = require('../reducers');
+            store.replaceReducer(nextRootReducer);
+        });
+    }
+
+    return store;
 }
