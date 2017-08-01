@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browserHistory } from 'react-router';
+import createHistory from 'history/createBrowserHistory';
 import configureStore from './store';
-import Root from './containers/root';
+import Root from './containers/root.js';
 
-const store = configureStore(browserHistory);
+const history = createHistory();
+const store = configureStore(history);
 
 const target = document.getElementById('app');
 
-ReactDOM.render(<Root routerHistory={browserHistory} store={store}/>, target);
+ReactDOM.render(<Root routerHistory={history} store={store}/>, target);

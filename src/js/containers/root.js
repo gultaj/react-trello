@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
+import { ConnectedRouter } from 'react-router-redux';
 import invariant from 'invariant';
 import routes from '../routes';
 
@@ -12,9 +12,9 @@ export default class Root extends React.Component {
         );
 
         return (
-            <Router history={this.props.routerHistory}>
+            <ConnectedRouter history={this.props.routerHistory}>
                 {routes}
-            </Router>
+            </ConnectedRouter>
         );
     }
 

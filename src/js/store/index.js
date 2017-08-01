@@ -9,9 +9,9 @@ const loggerMiddleware = createLogger({
     collapsed: true
 });
 
-export default function configureStore(browserHistory) {
-    const reduxRouterMiddleware = routerMiddleware(browserHistory);
-    const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, thunkMiddleware, loggerMiddleware)(createStore);
-
-    return createStoreWithMiddleware(reducers);
+export default function configureStore(history) {
+    return createStore(
+        reducers, 
+        applyMiddleware(routerMiddleware(history), thunkMiddleware, loggerMiddleware)
+    );
 }

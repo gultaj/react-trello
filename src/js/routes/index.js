@@ -1,10 +1,10 @@
 import React from 'react';
-import { IndexRoute, Route } from 'react-router'
+import { Route } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayouts.jsx';
 import RegistrationsNew from '../views/registrations/Form.jsx';
 
 export default (
-    <Route component={MainLayout}>
+    <MainLayout>
         <Route path="/" component={RegistrationsNew}/>
-    </Route>
+    </MainLayout>
 );
