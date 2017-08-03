@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import invariant from 'invariant';
-import routes from '../routes';
+import Match from '../routes';
 
 export default class Root extends React.Component {
     _renderRouter() {
@@ -13,7 +13,7 @@ export default class Root extends React.Component {
 
         return (
             <ConnectedRouter history={this.props.routerHistory}>
-                {routes}
+                <Match/>
             </ConnectedRouter>
         );
     }

@@ -15,7 +15,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
-        publicPath: '/static/'
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -43,5 +43,16 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new ExtactTextPlugin('assets/style.css'),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                historyApiFallback: {
+                    index: '/'
+                }
+            }
+        })
     ],
+    devServer: {
+        historyApiFallback: true
+    }
+    
 }
