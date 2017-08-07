@@ -1,22 +1,25 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import MainLayout from '../layouts/main';
+import Auth from '../layouts/auth';
 import AuthLogin from '../views/auth/login';
 import AuthRegistration from '../views/auth/registration';
 import Authenticated from '../containers/authenticated';
 import Home from '../views/home';
 import BoardsShow from '../views/boards/show';
+import NotFound from '../views/404';
 
-const Match = () => (
-    <MainLayout>
-        <Route path="/auth/login" component={AuthLogin}/>
-        <Route path="/auth/registration" component={AuthRegistration}/>
+export default (
+    <div>
+        <Switch>
+            <Route exact path="/auth/login" component={AuthLogin}/>
+            <Route exact path="/auth/register" component={AuthRegistration}/>
 
-        <Authenticated>
-            <Route exact path="/" component={Home}/>
-            <Route path="/boards/:id" component={BoardsShow}/>
-        </Authenticated>
-    </MainLayout>
+            <Authenticated exact path="/" component={Home} />
+            <Authenticated exact path="/boards/:id" component={BoardsShow} />
+            <Route component={NotFound} />
+        </Switch>
+    </div>
 );
 
-export default Match;
+// export default Match;
