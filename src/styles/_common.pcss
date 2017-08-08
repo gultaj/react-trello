@@ -1,0 +1,29 @@
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+body {
+    height: 100vh;
+}
+
+#app {
+    height: 100%;
+}
+
+.container {
+    background: var(--background);
+    height: 100%;
+    position: relative;
+}
+
+.logo {
+    background-image: url(/src/img/header-logo.png);
+    height: 30px;
+    width: 5pc;
+    &-header {
+        height: 30px;
+        width: 5pc;
+        margin: auto;
+        text-align: center;
+    }
+}

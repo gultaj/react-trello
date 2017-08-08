@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const AuthLayout = ({children, link, title}) => (
     <main className="auth">
-        <header>
-            <div className="logo">Trello</div>
+        <header className="logo-header">
+            <div className="logo"></div>
         </header>
         {children}
         <footer className="auth__footer">
-            <Link to={link}>{title}</Link>
+            <Link to={link} className="auth__link">{title}</Link>
         </footer>
     </main>
 );

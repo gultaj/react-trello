@@ -42,7 +42,7 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new ExtactTextPlugin('assets/style.css'),
+        new ExtactTextPlugin('/assets/style.css'),
         new webpack.LoaderOptionsPlugin({
             options: {
                 historyApiFallback: {

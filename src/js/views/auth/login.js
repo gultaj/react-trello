@@ -6,14 +6,14 @@ export default class AuthLogin extends React.Component {
         return (
             <AuthLayout link="/auth/register" title="Sign up">
                 <form className="form">
-                    <div className="form__field">
-                        <input type="email" name="email" id="email" placeholder="E-mail"/>
+                    <div className="form__group">
+                        <input type="email" className="form__field" name="email" id="email" placeholder="E-mail"/>
                     </div>
-                    <div className="form__field">
-                        <input type="password" name="password" id="password" placeholder="Password"/>
+                    <div className="form__group">
+                        <input type="password" className="form__field" name="password" id="password" placeholder="Password"/>
                     </div>
-                    <div className="form__field">
-                        <button type="submit" className="btn btn--form">Sign in</button>
+                    <div className="form__group">
+                        <button type="submit" className="btn form__field">Sign in</button>
                     </div>
                 </form>
             </AuthLayout>
