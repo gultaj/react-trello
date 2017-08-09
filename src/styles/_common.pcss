@@ -2,6 +2,10 @@
     box-sizing: inherit;
 }
 
+a {
+    font-family: sans-serif;
+}
+
 body {
     height: 100vh;
 }
@@ -17,12 +21,13 @@ body {
 }
 
 .logo {
-    background-image: url(/src/img/header-logo.png);
-    height: 30px;
-    width: 5pc;
+    background-image: url(/src/img/trello-logo-big.svg);
+    background-size: var(--logo-width-big) var(--logo-height-big);
+    height: var(--logo-height-big);
+    width: var(--logo-width-big);
     &-header {
-        height: 30px;
-        width: 5pc;
+        height: var(--logo-height-big);
+        width: var(--logo-width-big);
         margin: auto;
         text-align: center;
     }
