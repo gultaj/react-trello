@@ -1,11 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import AuthLayout from '../../layouts/auth';
+import { setDocumentTitle } from '../../utils/index';
+import Actions from '../../actions/auth';
 
-export default class AuthLogin extends React.Component {
+class AuthLogin extends React.Component {
+
+    componentDidMount() {
+        setDocumentTitle('Sign in');
+    }
+
+    _handleSubmit(e) {
+        e.preventDefault();
+        const { email, password } = this.refs;
+        const { dispatch } = this.props;
+
+        dispatch(Actions.signIn(email.value, password.value));
+    }
+
+    _renderError(e) {
+        const { error } = this.props;
+
+        if (!error) return false;
+
+        return (
+            <div className="form__error">{error}</div>
+        )
+    }
+
     render() {
         return (
             <AuthLayout link="/auth/register" title="Sign up">
-                <form className="form">
+                <form className="form" onSubmit={::this._handleSubmit}>
+                    {::this._renderError()}
                     <div className="form__group">
                         <input type="email" className="form__field" name="email" id="email" placeholder="E-mail"/>
                     </div>
@@ -20,3 +47,7 @@ export default class AuthLogin extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => (state.session);
+
+export default conneect(mapStateToProps)(AuthLogin);
