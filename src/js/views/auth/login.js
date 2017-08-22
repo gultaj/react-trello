@@ -1,10 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import AuthLayout from '../../layouts/auth';
 import { setDocumentTitle } from '../../utils/index';
-import Actions from '../../actions/auth';
+import * as authActions from '../../actions/auth';
 
-class AuthLogin extends React.Component {
+@connect(
+    state => ({session: state.session}),
+    dispatch => ({authActions: bindActionCreators(authActions, dispatch)})
+)
+export default class AuthLogin extends React.Component {
 
     componentDidMount() {
         setDocumentTitle('Sign in');
@@ -47,7 +52,3 @@ class AuthLogin extends React.Component {
         );
     }
 }
-
-const mapStateToProps = (state) => (state.session);
-
-export default conneect(mapStateToProps)(AuthLogin);
