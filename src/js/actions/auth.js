@@ -6,7 +6,11 @@ export function login(email, password) {
         dispatch({ type: AUTH.LOGIN_REQUEST });
 
         fetch(URL.login, {
-            method: 'POST', 
+            method: 'POST',
+            mode: 'cors',
+            headers:{
+                'Access-Control-Allow-Origin':'*'
+            },
             body: JSON.stringify({email, password})
         })
         .then(res => res.json())

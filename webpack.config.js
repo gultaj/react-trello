@@ -6,7 +6,7 @@ module.exports = {
     devtool: 'eval-source-map',
     entry: {
         app: [
-            'webpack-dev-server/client?http://localhost:8080',
+            'webpack-dev-server/client?http://localhost:3000',
             'webpack/hot/only-dev-server',
             './src/js/main.js',
             './src/styles/style.pcss'
@@ -52,7 +52,9 @@ module.exports = {
         })
     ],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        port: 3000,
+        compress: true
     }
     
 }
