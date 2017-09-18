@@ -1,5 +1,6 @@
 import { AUTH } from '../constants/actionTypes';
 import { URL } from '../constants/api';
+import { push } from 'react-router-redux';
 
 export function login(email, password) {
     return (dispatch) => {
@@ -9,15 +10,20 @@ export function login(email, password) {
             method: 'POST',
             mode: 'cors',
             headers:{
-                'Access-Control-Allow-Origin':'*'
+                'Access-Control-Allow-Origin': 'localhost:3000',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({email, password})
         })
         .then(res => res.json())
-        .then(data => dispatch({
-           type: AUTH.LOGIN_SUCCESS,
-           payload: data.token 
-        }))
+        .then((data) => {
+            localStorage.setItem('trelloAuthToken', data.token);
+            dispatch({
+                type: AUTH.LOGIN_SUCCESS,
+                payload: data.user 
+            });
+            dispatch(push('/'));
+        })
         .catch(error => dispatch({
             type: AUTH.LOGIN_FAILED,
             payload: error
