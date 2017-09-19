@@ -3,7 +3,7 @@ import { AUTH } from '../constants/actionTypes';
 const initialState = {
     currentUser: null,
     socket: null,
-    error: null
+    errors: null
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -11,7 +11,7 @@ export default function reducer(state = initialState, action = {}) {
         case AUTH.LOGIN_SUCCESS:
             return { ...state, currentUser: action.payload, error: null};
         case AUTH.LOGIN_FAILED:
-            return { ...state, error: action.payload};    
+            return { ...state, errors: action.payload};    
         default:
             return state;
     }

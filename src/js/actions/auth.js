@@ -5,29 +5,33 @@ import { push } from 'react-router-redux';
 export function login(email, password) {
     return (dispatch) => {
         dispatch({ type: AUTH.LOGIN_REQUEST });
-
+        var formData = new FormData;
+        formData.append('email', email);
+        formData.append('password', password);
         fetch(URL.login, {
             method: 'POST',
-            mode: 'cors',
-            headers:{
-                'Access-Control-Allow-Origin': 'localhost:3000',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({email, password})
+            body: formData
         })
-        .then(res => res.json())
-        .then((data) => {
-            localStorage.setItem('trelloAuthToken', data.token);
-            dispatch({
-                type: AUTH.LOGIN_SUCCESS,
-                payload: data.user 
-            });
-            dispatch(push('/'));
-        })
-        .catch(error => dispatch({
-            type: AUTH.LOGIN_FAILED,
-            payload: error
-        }));
+        .then(res => {
+            if (res.ok) {
+                res.json().then((data) => {
+                    console.log(data);
+                    localStorage.setItem('trelloAuthToken', data.token);
+                    dispatch({
+                        type: AUTH.LOGIN_SUCCESS,
+                        payload: data.user 
+                    });
+                    dispatch(push('/'));
+                });
+            } else {
+                res.json().then(error => {
+                    dispatch({
+                        type: AUTH.LOGIN_FAILED,
+                        payload: error
+                    });
+                });
+            }
+        });
     };
 }
 
