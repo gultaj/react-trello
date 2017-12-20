@@ -3,7 +3,8 @@ import { AUTH } from '../constants/actionTypes';
 const initialState = {
     currentUser: null,
     socket: null,
-    errors: null
+    errors: null,
+    authenticated: true
 };
 
 export default function reducer(state = initialState, action = {}) {

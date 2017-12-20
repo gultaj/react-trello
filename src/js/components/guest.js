@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
-export default class Guest extends React.Component {
+@connect(state => ({authenticated: state.session.authenticated}))
+export default class GuestRoute extends Component {
     render() {
-        const { component } = this.props;
-        const token = localStorage.getItem('trelloAuthToken');
+        const {component: ComposedComponent, authenticated, ...rest} = this.props;
         return (
-            <Route render={ (props) => {
-                return  !token ? 
-                    (React.createElement(component, {...props})) :
-                    (<Redirect to="/"/>);
-            }} />
+            <Route {...rest} render={ (props) => (
+                !authenticated ? 
+                    (<ComposedComponent {...props} />) :
+                    (<Redirect to="/" />)
+            )} />
         );
     }
 }
