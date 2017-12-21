@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import AuthLayout from '../../layouts/auth';
+import AuthLayout from '../layouts/auth';
 import { setDocumentTitle, renderErrorFor } from '../../utils/index';
 import { login } from '../../actions/auth';
 

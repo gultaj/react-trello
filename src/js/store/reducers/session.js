@@ -1,10 +1,10 @@
-import { AUTH } from '../constants/actionTypes';
+import { AUTH } from '../../constants/actionTypes';
 
 const initialState = {
     currentUser: null,
     socket: null,
     errors: null,
-    authenticated: true
+    authenticated: false
 };
 
 export default function reducer(state = initialState, action = {}) {
