@@ -3,7 +3,7 @@ const path = require('path');
 const ExtactTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     entry: {
         app: [
             'webpack-dev-server/client?http://localhost:3000',
@@ -38,6 +38,12 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ['react-hot-loader', 'babel-loader']
             }
+        ]
+    },
+    resolve: {
+        modules: [
+            path.resolve('./src/js'),
+            path.resolve('./node_modules')
         ]
     },
     plugins: [

@@ -1,13 +1,10 @@
-import { AUTH } from '../constants/actionTypes';
-import { URL } from '../constants/api';
+import { AUTH } from './actionConstants';
+import { URL } from './api/apiConstants';
 import { push } from 'react-router-redux';
 
-export function login(email, password) {
+export function login(formData) {
     return (dispatch) => {
         dispatch({ type: AUTH.LOGIN_REQUEST });
-        var formData = new FormData;
-        formData.append('email', email);
-        formData.append('password', password);
         fetch(URL.login, {
             method: 'POST',
             body: formData
