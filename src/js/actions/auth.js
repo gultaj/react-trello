@@ -32,13 +32,13 @@ export function login(formData) {
     };
 }
 
-export function register(first_name, last_name, email, password, password_confirmation) {
+export function register(formData) {
     return dispatch => {
         dispatch({ type: AUTH.REGISTER_REQUEST });
 
         fetch(URL.register, {
             method: 'POST',
-            body: JSON.stringify({first_name, last_name, email, password, password_confirmation})
+            body: formData
         })
         .then(res => res.json())
         .then(data => dispatch({ type: AUTH.REGISTER_SUCCESS }))
