@@ -13,14 +13,14 @@ export default class App extends Component {
     render() {
         return (
             <div className="container">
-                <AnimatedSwitch atEnter={{ opacity: 0 }} atLeave={{ opacity: 0 }} atActive={{ opacity: 1 }}>
-                    <GuestRoute path="/auth/login" component={AuthLogin}/>
-                    <GuestRoute path="/auth/register" component={AuthRegister}/>
+                <Switch>
+                    <GuestRoute exact path="/auth/login" component={AuthLogin}/>
+                    <GuestRoute exact path="/auth/register" component={AuthRegister}/>
                     
                     <PrivateRoute exact path="/" component={Home} />
                     <PrivateRoute exact path="/boards/:id" component={BoardsShow} />
                     <Route component={NotFound} />
-                </AnimatedSwitch>
+                </Switch>
             </div>
         );
     }
