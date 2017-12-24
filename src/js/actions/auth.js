@@ -1,50 +1,41 @@
 import { AUTH } from './actionConstants';
 import { URL } from './api/apiConstants';
 import { push } from 'react-router-redux';
+import axios from 'axios';
 
 export function login(formData) {
     return (dispatch) => {
         dispatch({ type: AUTH.LOGIN_REQUEST });
-        fetch(URL.login, {
-            method: 'POST',
-            body: formData
-        })
-        .then(res => {
-            if (res.ok) {
-                res.json().then((data) => {
-                    console.log(data);
-                    localStorage.setItem('trelloAuthToken', data.token);
-                    dispatch({
-                        type: AUTH.LOGIN_SUCCESS,
-                        payload: data.user 
-                    });
-                    dispatch(push('/'));
+        axios.post(URL.login, formData)
+            .then(({data}) => {
+                localStorage.setItem('trelloAuthToken', data.token);
+                dispatch({
+                    type: AUTH.LOGIN_SUCCESS,
+                    payload: data.user
                 });
-            } else {
-                res.json().then(error => {
-                    dispatch({
-                        type: AUTH.LOGIN_FAILED,
-                        payload: error
-                    });
+            })
+            .catch(({response}) => {
+                dispatch({
+                    type: AUTH.LOGIN_FAILED,
+                    payload: response.data
                 });
-            }
-        });
+            });
     };
 }
 
 export function register(formData) {
     return dispatch => {
         dispatch({ type: AUTH.REGISTER_REQUEST });
-
-        fetch(URL.register, {
-            method: 'POST',
-            body: formData
-        })
-        .then(res => res.json())
-        .then(data => dispatch({ type: AUTH.REGISTER_SUCCESS }))
-        .catch(error => dispatch({
-            type: AUTH.REGISTER_FAILED,
-            payload: error
-        }));
+        axios.post(URL.register, formData)
+            .then(({data}) => {
+                dispatch({ type: AUTH.REGISTER_SUCCESS });
+                dispatch(push('/auth/login'));
+            })
+            .catch(({response}) => {
+                dispatch({
+                    type: AUTH.REGISTER_FAILED,
+                    payload: response.data
+                });
+            });
     };
 }
