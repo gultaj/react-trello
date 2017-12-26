@@ -7,8 +7,8 @@ export function setDocumentTitle(title) {
 export function renderErrorFor(errors, element) {
     if (!errors) return false;
     return (
-        <div className="form_error">
+        <p className="help is-danger">
             {errors[element]}
-        </div>
+        </p>
     );
 }

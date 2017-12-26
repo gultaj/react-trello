@@ -9,7 +9,8 @@ module.exports = {
             'webpack-dev-server/client?http://localhost:3000',
             'webpack/hot/only-dev-server',
             './src/js/main.js',
-            './src/styles/style.pcss'
+            // './src/styles/style.pcss'
+            './src/styles/style.scss'
         ]
     },
     output: {
@@ -19,8 +20,22 @@ module.exports = {
     },
     module: {
         rules: [
+            // {
+            //     test: /\.pcss$/,
+            //     exclude: /node_modules/,
+            //     use: ExtactTextPlugin.extract({
+            //         fallback: 'style-loader',
+            //         use: [
+            //             {
+            //                 loader: 'css-loader', 
+            //                 options: { importLoaders: 1 }
+            //             },
+            //             'postcss-loader'
+            //         ]
+            //     })
+            // },
             {
-                test: /\.pcss$/,
+                test: /\.scss$/,
                 exclude: /node_modules/,
                 use: ExtactTextPlugin.extract({
                     fallback: 'style-loader',
@@ -29,7 +44,7 @@ module.exports = {
                             loader: 'css-loader', 
                             options: { importLoaders: 1 }
                         },
-                        'postcss-loader'
+                        'sass-loader'
                     ]
                 })
             },
