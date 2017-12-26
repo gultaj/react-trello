@@ -1,22 +1,13 @@
 import React from 'react';
+import InputField from 'views/partials/InputField';
 
 const LoginForm = ({errors, handleSubmit, renderErrorFor}) => (
     <form className="form" onSubmit={handleSubmit}> 
+        <InputField type="email" name="email" text="E-mail" errors={errors} />
+        <InputField type="password" name="password" text="Password" errors={errors} />
         <div className="field">
             <div className="control">
-                <input type="email" className="input is-medium" name="email" id="email" placeholder="E-mail"/>
-            </div>
-            {renderErrorFor(errors, 'email')}
-        </div>  
-        <div className="field">
-            <div className="control">
-                <input type="password" className="input is-medium" name="password" id="password" placeholder="Password"/>
-            </div>
-            {renderErrorFor(errors, 'password')}
-        </div>
-        <div className="field">
-            <div className="control">
-                <button type="submit" className="button is-info is-outlined is-fullwidth is-medium">Sign in</button>
+                <button type="submit" className="button is-info is-outlined is-inverted is-fullwidth is-medium">Sign in</button>
             </div>
         </div>
     </form>
