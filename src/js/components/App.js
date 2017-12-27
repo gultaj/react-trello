@@ -12,7 +12,7 @@ import NotFound from 'views/404';
 export default class App extends Component {
     render() {
         return (
-            <div className="container is-fullhd">
+            <div className="container is-fluid is-marginless">
                 <Switch>
                     <GuestRoute exact path="/auth/login" component={AuthLogin}/>
                     <GuestRoute exact path="/auth/register" component={AuthRegister}/>
